@@ -1,3 +1,5 @@
+
+
 export const settings = {
   columnCreatorText: 'Add new column',
   cardCreatorText: 'Add new card',
@@ -12,11 +14,24 @@ export const settings = {
   },
   defaultListDescription: '<p>I can do all the things!!!</p>',
   defaultColumnIcon: 'list-alt',
+  headerIcon: 'poo',
 };
 
 export const pageContents = {
   title: 'My first React app',
   subtitle: 'A simple to-do app, with lists, columns and cards',
+};
+
+export const infoData = {
+  title: 'Info',
+  image: 'http://uploads.kodilla.com/bootcamp/fer/11.react/space.png',
+  description: 'This is some basic info about my website......',
+};
+
+export const faqData = {
+  title: 'FAQ',
+  image: 'http://uploads.kodilla.com/bootcamp/fer/11.react/space.png',
+  description: 'These are the most frequently asked questions ......',
 };
 
 export const listData = {
