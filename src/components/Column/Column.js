@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import styles from './Column.scss';
 import Card from '../Card/Card';
 import PropTypes from 'prop-types';
-//import Creator from '../Creator/Creator';
+import Creator from '../Creator/Creator';
 import Icon from '../Icon/Icon';
-//import { settings } from '../../data/dataStore';
+import { settings } from '../../data/dataStore';
+
 
 export default class Column extends Component {
     static propTypes = {
@@ -12,10 +13,15 @@ export default class Column extends Component {
       cards: PropTypes.array,
       icon: PropTypes.node,
       map: PropTypes.func,
+      addCard: PropTypes.func,
     };
+
+    static defaultProps = {
+      icon: settings.defaultColumnIcon,
+    }
       
     render() {
-      const {title, cards, icon} = this.props; // eslint-disable-line no-unused-vars
+      const {addCard,title, cards, icon} = this.props; // eslint-disable-line no-unused-vars
       return (
         <div className = {styles.component}>
           <section >
@@ -23,12 +29,10 @@ export default class Column extends Component {
               <span className = {styles.icon}>
                 <Icon name = {icon}/> 
               </span></h3>
-            {cards.map(({key, ...cardProps}) => (
-              <Card key={key} {...cardProps} />
+            {cards.map(cardData => (
+              <Card key={cardData.id} {...cardData} />
             ))}
-            {/*<div>
-                        <Creator text={settings.cardCreatorText} action={title => this.addCard(title)}/>
-                    </div>*/}
+            <Creator text={settings.cardCreatorText} action={addCard}/>
           </section>
         </div>
       );
