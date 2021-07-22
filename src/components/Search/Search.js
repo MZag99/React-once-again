@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { settings } from '../../data/dataStore';
 import Icon from '../Icon/Icon';
 import Container from '../Container/Container';
+import { withRouter } from 'react-router';
 
 class Search extends React.Component {
   static propTypes = {
@@ -31,7 +32,7 @@ class Search extends React.Component {
   }
 
   handleOK(){
-    this.props.changeSearchString(this.state.value);
+    this.props.history.push(`/search/${this.state.value}`); // eslint-disable-line react/prop-types 
   }
 
   componentDidUpdate(prevProps){
@@ -44,12 +45,20 @@ class Search extends React.Component {
     const {text, countVisible, countAll} = this.props;
     const {value} = this.state;
     const {icon} = settings.search;
+    const searchPhrase = this.props.history.location.pathname; // eslint-disable-line react/prop-types
     return (
       <Container>
         <div className={styles.component}>
+          {console.log(searchPhrase)}
           <input
             type='text'
-            placeholder={text}
+            placeholder={(searchPhrase.length <= 1) ? text // eslint-disable-line react/prop-types
+              : (searchPhrase === '/info') ? text
+                : (searchPhrase === '/faq') ? text
+                  : (new RegExp('/list/', 'i').test(searchPhrase)) ? text
+                    : (searchPhrase.length > 1) ? searchPhrase.slice(8) // eslint-disable-line react/prop-types
+                      : text
+            }
             value={value}
             onChange={event => this.handleChange(event)}
           />
@@ -65,4 +74,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default withRouter(Search);

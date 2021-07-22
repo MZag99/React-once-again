@@ -4,6 +4,7 @@ import styles from './Header.scss';
 import Container from '../Container/Container';
 import Icon from '../Icon/Icon';
 import {settings} from '../../data/dataStore';
+import Search from '../Search/Search';
 
 export default class Header extends Component {
   render() {
@@ -11,6 +12,7 @@ export default class Header extends Component {
       <header className = {styles.component}>
         <Container>
           <div className = {styles.wrapper}>
+            <Search />
             <nav>
               <NavLink exact to='/'>Home</NavLink>
               <NavLink exact to='/info'>Info</NavLink>
